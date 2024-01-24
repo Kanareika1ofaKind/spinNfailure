@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handling Spinners and Failures</title>
+</head>
+<body>
+  <h1>Handling Spinners and Failures</h1>
+  <section>
+    <h2>Here are the users:</h2>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"
+    integrity="sha512-TjBzDQIDnc6pWyeM1bhMnDxtWH0QpOXMcVooglXrali/Tj7W569/wd4E8EDjk1CwOAOPSJon1VfcEt1BI4xIrA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const baseURL = 'https://testing-apis-postman.herokuapp.com'
+    //  [GET]  /api/users
+    // 
+    const info = document.querySelector('h2')
+    info.textContent = 'Fetching Your Data...'
+    axios.get(`${baseURL}/api/users`)
+    .then(res => {
+    info.textContent = 'Here is your data:'
+      console.log(res.data);
+    })
+    .catch(error => {
+      info.textContent = 'There was a problem: ' + error.response.data.message;
+      console.log(error);
+    })
+  </script>
+</body>
+</html>
